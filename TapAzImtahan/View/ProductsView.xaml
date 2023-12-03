@@ -1,0 +1,204 @@
+﻿<Page x:Class="TapAzImtahan.View.ProductsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:TapAzImtahan.View"
+      xmlns:viewModel="clr-namespace:TapAzImtahan.ViewModel"
+      xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductsView">
+    <Page.DataContext>
+        <viewModel:ProductsViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="1.8*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Background="#E0E0E0" Grid.Row="0">
+
+            <Grid Background="#E0E0E0" Height="90" Width="800">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="4*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock Foreground="Gray" Text="Turbo.az   Boss.az   Bina.az" Margin="170,0,485,0"></TextBlock>
+                    <TextBlock Foreground="Black" Text="Destek:(012)555-55-55" Margin="425,-1,255,1"></TextBlock>
+                    <TextBlock Foreground="Gray" Text="Yardim  RU  Secilmisler" Margin="550,0,105,0"></TextBlock>
+
+
+                </Grid>
+                <Grid HorizontalAlignment="Left" Background="#FF4500" Grid.Row="1">
+                    <TextBlock Margin="0,0,0,0" Text="tap.az" FontSize="27" Foreground="White" FontWeight="DemiBold"></TextBlock>
+                    <Button Template="{StaticResource Selection_button2_style}" Foreground="White" FontWeight="DemiBold" Height="35" Width="100"  HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding AddBewCommand}" Margin="675,0,0,0" >Add new</Button>
+                    <Border Background="#E0E0E0" CornerRadius="6" BorderThickness="0" BorderBrush="Gray"  Margin="285,20,150,20"></Border>
+                    <Button Command="{Binding SearchCommand}" FontWeight="DemiBold" Template="{StaticResource Selection_button_style}" HorizontalAlignment="Left"  Width="60" Height="25" VerticalAlignment="Center"  Foreground="white" Margin="585,0,0,0" RenderTransformOrigin="0.5,2.2">Search</Button>
+                    <TextBox   Text="{Binding SearchedString,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource HoverTextBoxStyle}" HorizontalAlignment="Left" FontSize="15" Width="305" Height="35" VerticalAlignment="Center" Margin="285,0,0,0"></TextBox>
+
+                </Grid>
+            </Grid>
+
+            <Grid  Background="#E0E0E0" Height="70">
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button  Height="50" Width="105" Margin="10" FontWeight="DemiBold"  Command="{Binding EveryProducCommand}"  Template="{StaticResource Selection_button_style}" Foreground="White">All Products</Button>
+                    <Button  Template="{StaticResource Selection_button3_style}" Command="{Binding OnlyCarsCommand}" Margin="8" Height="53" Width="65">
+                        <Grid>
+                            <Image Source="https://cdn.discordapp.com/attachments/1057964461455056936/1134876964428185703/indir_7.jpeg" Margin="6,-15,0,-9"></Image>
+                        </Grid>
+                    </Button>
+                    <Button Template="{StaticResource Selection_button3_style}" Command="{Binding OnlyPetsCommand}" Margin="8" Height="53" Width="65">
+                        <Grid>
+                            <Image Source="https://cdn.discordapp.com/attachments/1039503518404456458/1134877218032603308/indir_9.jpeg" Margin="0,0,3,5"></Image>
+                        </Grid>
+                    </Button>
+                    <Button Template="{StaticResource Selection_button3_style}" Command="{Binding OnlyElectronicsCommand}" Margin="8" Height="53" Width="65">
+                        <Grid>
+                            <Image Source="https://cdn.discordapp.com/attachments/1039503518404456458/1134877365537873940/indir_8.jpeg" Margin="1,4,0,1" RenderTransformOrigin="0.457,0.424"></Image>
+                        </Grid>
+                    </Button>
+                    <Button Template="{StaticResource Selection_button3_style}" Command="{Binding OnlyHomeCommand}" Margin="8" Height="53" Width="65">
+                        <Grid>
+                            <Image Source="https://cdn.discordapp.com/attachments/1039503518404456458/1134877562015846561/indir_10.jpeg" Margin="6,4,5,1"></Image>
+                        </Grid>
+                    </Button>
+                    <Button Template="{StaticResource Selection_button3_style}" Command="{Binding OnlyWorksCommand}" Margin="8" Height="53" Width="65">
+                        <Grid>
+                            <Image Source="https://cdn.discordapp.com/attachments/1039503518404456458/1134877737195151491/images_2.jpeg" Margin="-10,0,-8,1"></Image>
+                        </Grid>
+                    </Button>
+
+
+                    <!--<Border Background="#E0E0E0"   CornerRadius="6" BorderBrush="#FF4500" BorderThickness="2" Height="30" Width="140">
+                        <Grid>
+                            <ComboBox FontWeight="DemiBold" Height="25" Width="132" BorderThickness="0" ItemsSource="{Binding NewProductCategories}" SelectedItem="{Binding SelectedCategory}"  >
+
+                            </ComboBox>
+                        </Grid>
+                    </Border>-->
+
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+
+        <Grid  Grid.Row="1"  Background="#E0E0E0" Name="Products_Grid" Visibility="{Binding ProductManagementPanelVisibility}">
+            <Border  Background="#E0E0E0" Visibility="{Binding SelectedProductLWvisibility}" >
+                <Grid  Background="#E0E0E0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0"   Source="{Binding SelectedProduct.ImageUri}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Grid Grid.Column="1">
+                        <Button   Template="{StaticResource Selection_button2_style}" Content="Go back" FontWeight="DemiBold" FontSize="15"  Foreground="White" Command="{Binding ShowSelectedProductCommand}" HorizontalAlignment="Right" VerticalAlignment="Top"  />
+                        <StackPanel Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBlock  Text="{Binding SelectedProduct.Name}" FontSize="35" FontStyle="Oblique" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding SelectedProduct.Description}"  FontStyle="Oblique" FontWeight="Bold" TextWrapping="Wrap" FontSize="15"  />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                            <TextBlock Foreground="White" Background="OrangeRed" Text="AZN" TextAlignment="Right" FontSize="25" FontWeight="DemiBold"  />
+                            <TextBlock Foreground="White" Background="OrangeRed" Text="{Binding SelectedProduct.Price}" FontSize="20" Width="140" Height="55" FontWeight="DemiBold"   />
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </Border>
+            <ListView  Background="#E0E0E0"  Height="360" VerticalAlignment="Top" VerticalContentAlignment="Top"  ItemsSource="{Binding CurrentProducts,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct}" Visibility="{Binding ProductLWvisibility}" IsHitTestVisible="{Binding IsEnable}">
+                <ListView.ItemContainerStyle >
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Width" Value="220"></Setter>
+                        <Setter Property="Height" Value="220"></Setter>
+                        <Setter Property="Margin" Value="10"></Setter>
+                        <Setter Property="ScrollViewer.AllowDrop" Value="False"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="White" CornerRadius="5" BorderThickness="1" BorderBrush="#FF4500" Height="207">
+
+                            <StackPanel Background="White"  Margin="10">
+                                <Border BorderBrush="Black" BorderThickness="0" Width="172" Height="116">
+                                    <Grid>
+
+                                        <Image Stretch="UniformToFill" Source="{Binding ImageUri}" HorizontalAlignment="Center" />
+                                    </Grid>
+                                </Border>
+
+                                <TextBlock Margin="-80,0,0,0" Text="{Binding Price}" FontSize="25"  FontWeight="DemiBold"   Width="111" Height="32"/>
+                                <TextBlock Margin="100,-33,0,0" Text="AZN" FontSize="25"  FontWeight="DemiBold"   Width="111" Height="32"/>
+                                <TextBlock Margin="-20,0,0,0" Text="{Binding Name}" FontSize="25"  FontWeight ="ExtraLight"   Width="168" Height="32"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="1" Background="Azure" Visibility="{Binding ProductCreationPanelVisibility}" Name="New_Product_Creation_Grid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="61*"/>
+                <ColumnDefinition Width="19*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Height="650" Width="300" VerticalAlignment="Top" Margin="250,0,60,0">
+                <TextBlock Width="90" HorizontalAlignment="Left" Text="Category:" FontSize="20"/>
+                <ComboBox  SelectedItem="{Binding SelectedComboBoxItem}" ItemsSource="{Binding ProductCategories}" Width="250" HorizontalAlignment="Left"></ComboBox>
+                <Grid Height="275">
+                    <ScrollViewer  Visibility="{Binding CarProductCreateSelectionVisibility}">
+                        <StackPanel x:Name="CarsRegister_SP"  >
+                            <TextBlock Text="Marka:"/>
+                            <ComboBox ItemsSource="{Binding CarMarkas,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCarMarka}" DisplayMemberPath="name"></ComboBox>
+                            <TextBlock Text="Model:"/>
+                            <ComboBox ItemsSource="{Binding SelectedCarMarka.models,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedCarModelIndex}"  DisplayMemberPath="name"/>
+                            <TextBlock Text="Color:"/>
+                            <ComboBox  ItemsSource="{Binding Colors,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="name" SelectedValue="{Binding SelectedColor}"></ComboBox>
+                            <TextBlock Text="Salon:"/>
+                            <ComboBox ItemsSource="{Binding CarSalonCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding NewCarProduct.Salon}"/>
+                            <TextBlock Text="Price:"/>
+                            <TextBox Text="{Binding NewCarProduct.Price, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="Motor:"/>
+                            <TextBox Text="{Binding NewCarProduct.Motor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="Image:"/>
+                            <TextBox Text="{Binding SelectedImageUri, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <Grid Height="50">
+                                <Image Source="{Binding SelectedImageUri}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Button Height="20" Width="80" Command="{Binding ImageFileDialogCommand}" HorizontalAlignment="Right">Browse</Button>
+                            </Grid>
+                            <TextBlock Text="Description:"/>
+                            <TextBox Height="50" Text="{Binding NewCarProduct.Description, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <StackPanel  Visibility="{Binding OtherProductVisibility}">
+                        <TextBlock Text="Name:"/>
+                        <TextBox  Text="{Binding OtherNewProduct.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Price:"/>
+                        <TextBox  Text="{Binding OtherNewProduct.Price,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="250" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Category:"/>
+                        <ComboBox ItemsSource="{Binding NewProductCategories}" SelectedItem="{Binding OtherNewProduct.Category}"  Width="250" HorizontalAlignment="Left"></ComboBox>
+                        <TextBlock Text="Image:"/>
+                        <TextBox Text="{Binding SelectedImageUri , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="250" HorizontalAlignment="Left"/>
+                        <Grid Height="35">
+                            <Image Source="{Binding SelectedImageUri}" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="250" />
+                            <Button Height="20" Width="80" Command="{Binding ImageFileDialogCommand}" HorizontalAlignment="Center" Margin="120,0,0,0"  >Browse</Button>
+                        </Grid>
+                        <TextBlock Text="Description:"/>
+                        <TextBox Height="50" Text="{Binding OtherNewProduct.Description, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+                <Button Height="25" Margin="5"  Foreground="White" Content="Register New Product" Template="{StaticResource Selection_button_style}" FontSize="15" Width="180" Command="{Binding AddCommand}"/>
+                <Button Height="25"  Foreground="White" Content="Back" FontSize="15" Template="{StaticResource Selection_button_style}" Command="{Binding BackToMainMenuCommand}" Width="180"/>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Page>
